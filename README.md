@@ -14,7 +14,6 @@ The `libs` folder includes the latest releases of:
 - [Youtube Block](https://github.com/presenta-software/presenta-block-youtube)
 - [HighLightJs Module](https://github.com/presenta-software/presenta-module-highlightjs)
 - [Markdown Controller](https://github.com/presenta-software/presenta-controller-markdown)
-- [Swiper Controller](https://github.com/presenta-software/presenta-controller-swiper)
 - [ConsoleNotes Controller] (https://github.com/presenta-software/presenta-controller-console-notes)
 
 Have fun!

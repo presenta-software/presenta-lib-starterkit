@@ -1,12 +1,14 @@
 const config = {
   colors: 'adele',
+  fonts: 'heron',
   transition: 'fadeIn',
   blockVar: 'c',
   controllers: {
     fullscreen: true,
     focus: true,
-    swiper: true,
-    markdown: true
+    markdown: true,
+    preload: true,
+    pagenum: true
   },
   modules: {
     highlightjs: 'monokai'
@@ -16,8 +18,10 @@ const config = {
       blocks: [
         {
           textVar: 'title',
+          scale: 4,
           type: 'text',
-          text: '<h1>Hello <b>PRESENTA!</b></h1>'
+          text: `<h1>Hello <b>PRESENTA!</b></h1>
+          <small>press <mark>f</mark> to go fullscreen</small>`
         }
       ],
       colorVar: 'sec'
@@ -35,9 +39,13 @@ const config = {
     {
       blocks: [
         {
-          textVar: 'title',
+          textVar: 'text',
           type: 'text',
-          text: '<h2>Scene 3</h2>'
+          text: `<h1>Scene 3</h1>
+          <ul>
+            <li>Item 1</li>
+            <li>Item 2</li>
+          </ul>`
         },
         {
           type: 'image',
@@ -68,6 +76,18 @@ const config = {
           blockVar: '',
           type: 'youtube',
           url: 'Mh4f9AYRCZY'
+        }
+      ]
+    },
+    {
+      blocks: [
+        {
+          type: 'text',
+          textVar: 'title',
+          text: `# Go ahead
+## it\'s your **turn!**
+
+Just edit <mark>config.js</mark>`
         }
       ]
     }
