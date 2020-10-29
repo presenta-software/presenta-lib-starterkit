@@ -6,9 +6,11 @@ const config = {
   controllers: {
     fullscreen: true,
     focus: true,
+    swiper: true,
     markdown: true,
     preload: true,
-    pagenum: true
+    pagenum: true,
+    progressbar: true
   },
   modules: {
     highlightjs: 'monokai'
@@ -41,6 +43,7 @@ const config = {
         {
           textVar: 'text',
           type: 'text',
+          step: 'li',
           text: `<h1>Scene 3</h1>
           <ul>
             <li>Item 1</li>
