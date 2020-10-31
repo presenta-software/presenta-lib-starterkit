@@ -13,7 +13,7 @@ const config = {
     progressbar: true
   },
   modules: {
-    highlightjs: 'monokai'
+    highlightjs: 'gradient-dark'
   },
   scenes: [
     {
@@ -44,6 +44,7 @@ const config = {
           textVar: 'text',
           type: 'text',
           step: 'li',
+          responsive: true,
           text: `<h1>Scene 3</h1>
           <ul>
             <li>Item 1</li>
@@ -52,7 +53,7 @@ const config = {
         },
         {
           type: 'image',
-          url: 'https://images.unsplash.com/photo-1562797807-aa9baed9a414?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60'
+          url: 'assets/img.jpg'
         }
       ]
     },
