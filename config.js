@@ -2,7 +2,6 @@ const config = {
   colors: 'adele',
   fonts: 'heron',
   transition: 'fadeIn',
-  blockVar: 'c',
   controllers: {
     fullscreen: true,
     focus: true,
@@ -10,7 +9,10 @@ const config = {
     markdown: true,
     preload: true,
     pagenum: true,
-    progressbar: true
+    progressbar: true,
+    consoleNotes: {
+      clear: true
+    }
   },
   modules: {
     highlightjs: 'gradient-dark'
@@ -23,10 +25,13 @@ const config = {
           scale: 4,
           type: 'text',
           text: `<h1>Hello <b>PRESENTA!</b></h1>
-          <small>press <mark>f</mark> to go fullscreen</small>`
+            <p>press <mark>f</mark> to go fullscreen</p>
+            <p>speaker notes in Dev Console</p>
+          `
         }
       ],
-      colorVar: 'sec'
+      colorVar: 'sec',
+      notes: 'Welcome to all my guests!'
     },
     {
       blocks: [
@@ -36,7 +41,8 @@ const config = {
           text: '<h2>Scene 2</h2>'
         }
       ],
-      colorVar: 'main'
+      colorVar: 'main',
+      notes: 'This is the second slide, can you believe it?'
     },
     {
       blocks: [
@@ -53,9 +59,15 @@ const config = {
         },
         {
           type: 'image',
-          url: 'assets/img.jpg'
+          url: 'https://images.unsplash.com/photo-1562797807-aa9baed9a414?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60'
         }
-      ]
+      ],
+      notes: `I have a lot of things to say such as:
+
+First sentence
+
+Second sentence
+`
     },
     {
       blocks: [
