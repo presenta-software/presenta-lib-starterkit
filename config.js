@@ -22,11 +22,11 @@ const config = {
       blocks: [
         {
           textVar: 'title',
-          scale: 4,
+          scale: 3.5,
           type: 'text',
           text: `<h1>Hello <b>PRESENTA!</b></h1>
             <p>press <mark>f</mark> to go fullscreen</p>
-            <p>speaker notes in Dev Console</p>
+            <p><small>(speaker notes in Dev Console)</small></p>
           `
         }
       ],
@@ -80,6 +80,8 @@ Second sentence
   text: '## This block:'
 }
 \`\`\`
+
+<small>(in remote demo, highlightjs is not loaded because its weight)</small>
 `,
           textVar: 'title'
         }
