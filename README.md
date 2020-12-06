@@ -1,23 +1,27 @@
 # PRESENTA Lib Starterkit
 
-This is a starterkit example to start from if you want to create a [PRESENTA Lib](https://lib.presenta.cc/) based presentation locally with some batteries included.
+Create a [PRESENTA Lib](https://lib.presenta.cc/) based presentation using **markdown**. 
 
-This example contains the following parts:
+**This starterkit needs to be run within a local webserver.**
 
-- A basic `index.html` to run the presentaation full window
-- A `config.js` example file you can edit
-- The required js libraries (`libs` and assets)
+Here what's included:
+
+- A basic `index.html` to run the presentation that fits the browser window
+- A `sample.md` example file you can edit
+- The required js libraries (`libs`)
 
 The `libs` folder includes the latest releases of:
 
 - [PRESENTA Lib](https://github.com/presenta-software/presenta-lib)
+- [MD2PJSON](https://github.com/presenta-software/md2pjson)
 - [Youtube Block](https://github.com/presenta-software/presenta-block-youtube)
+- [Chartjs Block](https://github.com/presenta-software/presenta-block-chartjs)
 - [HighLightJs Module](https://github.com/presenta-software/presenta-module-highlightjs)
 - [Markdown Controller](https://github.com/presenta-software/presenta-controller-markdown)
 - [Swiper Controller](https://github.com/presenta-software/presenta-controller-swiper)
 - [ConsoleNotes Controller](https://github.com/presenta-software/presenta-controller-console-notes)
 
-Happy config!
+
 
 ## Licence
 

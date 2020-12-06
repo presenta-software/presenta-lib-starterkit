@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PRESENTA Lib</title>
+    <title>PRESENTA Lib MarkDown</title>
     <link rel="stylesheet" type="text/css" href="libs/animate.min.css">
     <script src="libs/presenta.min.js"></script>
     <script src="libs/presenta-module-highlightjs.min.js"></script>
     <script src="libs/presenta-block-youtube.min.js"></script>
+    <script src="libs/presenta-block-chartjs.min.js"></script>
+    <script src="libs/presenta-block-fitty.min.js"></script>
     <script src="libs/presenta-controller-markdown.min.js"></script>
     <script src="libs/presenta-controller-console-notes.min.js"></script>
     <script src="libs/presenta-controller-swiper.min.js"></script>
+    <script src="libs/md2pjson.min.js"></script>
     <style>
         *{
             box-sizing: border-box;
@@ -26,9 +29,37 @@
 </head>
 <body>
     <div id="app"></div>
-    <script src="config.js"></script>
+    
     <script>
-        new Presenta('#app', config)
+        fetch('example.md?t=' + Math.random())
+            .then(res => res.text())
+            .then(raw => {
+                const config = md2pjson.parse(raw)
+                config.colors = 'adele',
+                config.fonts = 'heron',
+                config.transition = 'fadeIn',
+                config.controllers = {
+                    fullscreen: true,
+                    focus: true,
+                    swiper: true,
+                    markdown: true,
+                    preload: true,
+                    pagenum: true,
+                    progressbar: true,
+                    consoleNotes: {
+                        clear: true
+                    }
+                },
+                config.modules = {
+                    highlightjs: 'gradient-dark'
+                }
+                new Presenta('#app', config)
+            })
+            .then(pres => (console.log(pres)))
+            .catch(err => {
+                document.body.innerHTML = 'There is an error. Maybe you are not running a local webserver. In this case, open the README.md to learn more.'
+            })
+        
     </script>
 </body>
 </html>
