@@ -35,6 +35,8 @@
             .then(res => res.text())
             .then(raw => {
                 const config = md2pjson.parse(raw)
+
+                // here you can configure some options of the presentation
                 config.colors = 'adele',
                 config.fonts = 'heron',
                 config.transition = 'fadeIn',
@@ -46,6 +48,7 @@
                     preload: true,
                     pagenum: true,
                     progressbar: true,
+                    baseurl: '',
                     consoleNotes: {
                         clear: true
                     }
