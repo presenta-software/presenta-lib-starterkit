@@ -7,7 +7,7 @@ Create a [PRESENTA Lib](https://lib.presenta.cc/) based presentation using **mar
 Here what's included:
 
 - A basic `index.html` to run the presentation that fits the browser window
-- A `sample.md` example file you can edit
+- A `example.md` file you can edit
 - The required js libraries (`libs`)
 
 The `libs` folder includes the latest releases of:
