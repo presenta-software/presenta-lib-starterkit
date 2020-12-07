@@ -37,6 +37,7 @@
                 const config = md2pjson.parse(raw)
 
                 // here you can configure some options of the presentation
+                // documentation at https://lib.presenta.cc
                 config.colors = 'adele',
                 config.fonts = 'heron',
                 config.transition = 'fadeIn',
@@ -48,13 +49,13 @@
                     preload: true,
                     pagenum: true,
                     progressbar: true,
-                    baseurl: '',
+                    baseurl: '', // serve assets from
                     consoleNotes: {
                         clear: true
                     }
                 },
                 config.modules = {
-                    highlightjs: 'gradient-dark'
+                    highlightjs: 'gradient-dark' // theme of highlight.js
                 }
                 new Presenta('#app', config)
             })
