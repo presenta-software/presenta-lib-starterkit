@@ -2,7 +2,9 @@
 
 Create a [PRESENTA Lib](https://lib.presenta.cc/) based presentation using **markdown**. 
 
-**This starterkit needs to be run within a local webserver.**
+👉 **This starterkit needs to be run within a local webserver.** 👈
+
+Download the bundle [here](https://github.com/presenta-software/presenta-lib-starterkit/archive/master.zip)
 
 Here what's included:
 
