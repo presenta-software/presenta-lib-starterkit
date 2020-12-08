@@ -4,6 +4,8 @@
 
 ## Middle
 
+![](assets/image.jpg)
+
 ---
 
 <!--
