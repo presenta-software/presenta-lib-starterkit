@@ -4,9 +4,18 @@ Create a [PRESENTA Lib](https://lib.presenta.cc/) based presentation using **mar
 
 👉 **This starterkit needs to be run within a local webserver.** 👈
 
-Download the bundle [here](https://github.com/presenta-software/presenta-lib-starterkit/archive/master.zip)
+Download the bundle [here](https://github.com/presenta-software/presenta-lib-starterkit/archive/master.zip) then:
 
-Here what's included:
+- unzip it
+- fire a local web-server in it
+- edit `example.md` with your favourite markdown editor
+- save & refresh the browser
+- enjoy
+
+To have a glimpse, check the [online playground](https://play.presenta.cc).
+
+
+### What's included
 
 - A basic `index.html` to run the presentation that fits the browser window
 - A `example.md` file you can edit
