@@ -7,7 +7,7 @@ Create a [PRESENTA Lib](https://lib.presenta.cc/) based presentation using **mar
 Download the bundle [here](https://github.com/presenta-software/presenta-lib-starterkit/archive/master.zip) then:
 
 - unzip it
-- fire a local web-server in it
+- fire a local web-server in it (you can use this [Chrome extension](https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb)
 - edit `example.md` with your favourite markdown editor
 - save & refresh the browser
 - enjoy
