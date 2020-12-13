@@ -1,3 +1,8 @@
+---
+colors: adele
+fonts: heron
+transitions: fadeIn
+---
 
 # Begin
 

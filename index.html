@@ -36,11 +36,6 @@
             .then(raw => {
                 const config = md2pjson.parse(raw)
 
-                // here you can configure some options of the presentation
-                // documentation at https://lib.presenta.cc
-                config.colors = 'adele'
-                config.fonts = 'heron'
-                config.transition = 'fadeIn'
                 config.controllers = {
                     fullscreen: true,
                     focus: true,
