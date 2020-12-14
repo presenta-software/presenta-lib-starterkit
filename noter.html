@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRESENTA Lib Notes</title>
+    <script src="libs/presenta.min.js"></script>
+    <script src="libs/presenta-module-highlightjs.min.js"></script>
+    <script src="libs/presenta-block-youtube.min.js"></script>
+    <script src="libs/presenta-block-chartjs.min.js"></script>
+    <script src="libs/presenta-block-fitty.min.js"></script>
+    <script src="libs/presenta-block-vegalite.min.js"></script>
+    <script src="libs/presenta-block-modelviewer.min.js"></script>
+    <script src="libs/presenta-controller-markdown.min.js"></script>
+    <script src="libs/presenta-controller-console-notes.min.js"></script>
+    <script src="libs/presenta-controller-swiper.min.js"></script>
+    <script src="libs/md2pjson.min.js"></script>
+
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        html, body{
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            padding: 0;
+            margin: 0;
+        }
+
+        body{
+            display: flex;
+            flex-direction: column;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            background-color: black;
+        }
+
+        .header{
+            padding: .5rem;
+            display: flex;
+            justify-content: space-between;
+            color: white;
+            font-size:2rem;
+        }
+        .header a{
+            color: white;
+        }
+
+
+        .columns{
+            display: flex;
+            height: 100%;
+            overflow: hidden;
+            padding-top:10px;
+        }
+        .columns > div{
+            width: 50%;
+            padding-top: 5px;
+        }
+
+        .columns .left{
+            flex:2;
+            padding: 0 .25rem;
+        }
+        .columns .right{
+            padding: 0 .25rem;
+            flex:1;
+            height: 100%;
+            overflow-y: auto;
+            scroll-behavior:smooth;
+        }
+
+
+
+        .wrapper{
+            width: 100%;
+            margin-bottom:10px;
+            outline: 2px solid white;
+
+            display: block;
+        }
+
+        #notes{
+            font-size:2rem;
+            padding: .5rem;
+            color:white;
+        }
+
+        .preview{
+            height: 400%;
+        }
+
+        #app{
+            outline: 2px solid white;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="header">
+        <div class="left">
+            <a id="prev" href="">«</a>
+            <span id="pagenum"></span>
+            <a id="next" href="">»</a>
+        </div>
+        <div class="right">
+            <span id="timer">00:00:00</span>
+        </div>
+    </div>
+
+    <div class="columns">
+        <div class="left">
+            <div id="app"></div>
+            <div id="notes"></div>
+        </div>
+        <div class="right">
+            <div class="preview"></div>
+        </div>
+    </div>
+    
+    
+    <script>
+        const path = location.href.split('?name=')
+        const doc = path[1]
+        const pathParts = doc.split('/')
+        pathParts.splice(pathParts.length-1, 1)
+        let base = pathParts.join(',').replace(/\,/mig, '/')
+        base = base.length > 0 ? base + '/' : ''
+        fetch(doc + '?t=' + Math.random())
+            .then(res => res.text())
+            .then(raw => {
+                const config = md2pjson.parse(raw)
+
+                const pagenum = document.querySelector('#pagenum')
+                const noteCont = document.querySelector('#notes')
+                const container = document.querySelector('.preview')
+
+                config.transition = null
+
+                // first, let's disable some controllers that don't make sense in this context
+                if (!config.controllers) config.controllers = {}
+                config.controllers.progressbar = false
+                config.controllers.arrows = false
+                config.controllers.keyboard = false
+                config.controllers.pagenum = false
+                config.controllers.limitswitch = false
+                config.controllers.fullscreen = false
+                config.controllers.focus = false
+                config.controllers.rsync = true
+                config.controllers.baseurl = base
+
+                let router = null
+
+                // this is the main preview of the presentation
+                new Presenta('#app', config).then(p => {
+
+                    // let's exploit the internal router for the sync feature
+                    router = p.router
+
+                    const prev = () => {
+                        router.prev()
+                    }
+
+                    const next = () => {
+                        router.next()
+                    }
+
+                    document.querySelector('#prev').addEventListener('click', e => {
+                        prev()
+                        e.preventDefault()
+                    })
+                    document.querySelector('#next').addEventListener('click', e => {
+                        next()
+                        e.preventDefault()
+                    })
+
+                    window.addEventListener('keyup', e => {
+                        if (e.key === 'ArrowLeft') prev()
+                        if (e.key === 'ArrowRight') next()
+                    })
+
+                    router.on('indexChanged', e => {
+                        const scene = config.scenes[e.currentIndex]
+
+                        // speaker notes
+                        const notes = scene.notes || ''
+                        noteCont.innerHTML = notes
+
+                        // pagenum
+                        pagenum.innerHTML = `${e.currentIndex + 1} / ${e.totalScenes}`
+
+                        // sidebar scroll sync
+                        const href = location.href
+                        const parts = href.split('#')
+                        location.href = parts[0] + '#s' + (e.currentIndex + 1)
+
+                        //   const all = [].slice.call(document.querySelectorAll('.wrapper'))
+                        //   all.forEach(e => e.classList.remove('selected'))
+                        //   const s = document.querySelector(`.wrapper:nth-child(${e.currentIndex + 1})`)
+                        //   s.classList.add('selected')
+                    })
+                })
+
+                config.scenes.forEach((s, i) => {
+                    const wrapper = document.createElement('a')
+                    wrapper.setAttribute('id', 's' + i)
+                    wrapper.setAttribute('href', '#s' + (i + 1))
+                    wrapper.classList.add('wrapper')
+                    container.appendChild(wrapper)
+
+                    wrapper.addEventListener('click', () => {
+                        router.goto(i)
+                    })
+
+                    // here the trick, clone the main config in order to use it for each scene
+                    const configCloned = JSON.parse(JSON.stringify(config))
+                    configCloned.scenes = [s]
+                    configCloned.controllers.rsync = false
+                    configCloned.controllers.baseurl = ''
+                    new Presenta(wrapper, configCloned)
+                })
+            })
+            .catch(err => {
+                document.body.innerHTML = 'There is an error. Maybe you are not running a local webserver. In this case, open the README.md to learn more.'
+            })
+        
+    </script>
+
+</body>
+</html>

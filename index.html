@@ -3,62 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PRESENTA Lib MarkDown</title>
-    <link rel="stylesheet" type="text/css" href="libs/animate.min.css">
-    <script src="libs/presenta.min.js"></script>
-    <script src="libs/presenta-module-highlightjs.min.js"></script>
-    <script src="libs/presenta-block-youtube.min.js"></script>
-    <script src="libs/presenta-block-chartjs.min.js"></script>
-    <script src="libs/presenta-block-fitty.min.js"></script>
-    <script src="libs/presenta-controller-markdown.min.js"></script>
-    <script src="libs/presenta-controller-console-notes.min.js"></script>
-    <script src="libs/presenta-controller-swiper.min.js"></script>
-    <script src="libs/md2pjson.min.js"></script>
+    <title>Document</title>
+    <link rel="stylesheet" href="libs/mini-nord.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <style>
-        *{
-            box-sizing: border-box;
-        }
-        html, body, #app{
+        
+        html, body{
             width: 100%;
             height: 100%;
             overflow: hidden;
-            padding: 0;
-            margin: 0;
+            
         }
+        .wrapper{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .inner{
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+        .inner input{
+            background-color: white;
+        }
+        h2{
+            margin-bottom: 0;
+        }
+
+
     </style>
 </head>
 <body>
-    <div id="app"></div>
-    
-    <script>
-        fetch('example.md?t=' + Math.random())
-            .then(res => res.text())
-            .then(raw => {
-                const config = md2pjson.parse(raw)
+    <div class="wrapper">
+        <div class="inner">
+            <h2>PRESENTA Lib</h2>
+            <h3>Starterkit launcher</h3>
+            <p>Set the relative path to your markdown file:</p>
+            <input id="doc" type="text" value="example/presentation.md" />
+            <button id="presenter">Open Presenter</button>
+            <button id="noter">Open Notes</button>
+            <button id="printr">Open Printer</button>
+        </div>
+    </div>
 
-                config.controllers = {
-                    fullscreen: true,
-                    focus: true,
-                    swiper: true,
-                    markdown: true,
-                    preload: true,
-                    pagenum: true,
-                    progressbar: true,
-                    baseurl: '', // serve assets from
-                    consoleNotes: {
-                        clear: true
-                    }
-                },
-                config.modules = {
-                    highlightjs: 'gradient-dark' // theme of highlight.js
-                }
-                new Presenta('#app', config)
-            })
-            .then(pres => (console.log(pres)))
-            .catch(err => {
-                document.body.innerHTML = 'There is an error. Maybe you are not running a local webserver. In this case, open the README.md to learn more.'
-            })
-        
+
+    <script>
+        const doc = document.querySelector('#doc')
+        const presBtn = document.querySelector('#presenter')
+        const noteBtn = document.querySelector('#noter')
+        const printBtn = document.querySelector('#printr')
+
+        presBtn.addEventListener('click', e => {
+            window.open('presenter.html?name=' + doc.value, 'presenter', "resizable")
+        })
+
+        noteBtn.addEventListener('click', e => {
+            window.open('noter.html?name=' + doc.value, 'noter', "resizable")
+        })
+
+        printBtn.addEventListener('click', e => {
+            window.open('printer.html?name=' + doc.value, 'printer', "resizable")
+        })
+
     </script>
 </body>
 </html>

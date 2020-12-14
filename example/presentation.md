@@ -1,7 +1,7 @@
 ---
-colors: adele
+colors: blue
 fonts: heron
-transitions: fadeIn
+transition: fadeIn
 ---
 
 # Begin
@@ -12,10 +12,12 @@ transitions: fadeIn
 
 ![](assets/image.jpg)
 
+
 ---
 
 <!--
 steps: li
+notes: This is a presenter note 2!
 -->
 
 ## Another point
