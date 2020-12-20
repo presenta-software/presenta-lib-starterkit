@@ -4,7 +4,7 @@ fonts: heron
 transition: fadeIn
 ---
 
-# Begin
+# Begin :heart:
 
 ---
 
@@ -29,4 +29,4 @@ Here the news
 
 ---
 
-# End!
+# End! :pizza:
