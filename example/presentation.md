@@ -1,6 +1,6 @@
 ---
-colors: blue
-fonts: heron
+colors: one
+fonts: two
 transition: fadeIn
 ---
 
