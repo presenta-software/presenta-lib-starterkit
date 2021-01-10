@@ -1,6 +1,6 @@
 # PRESENTA Lib Starterkit
 
-Create a [PRESENTA Lib](https://lib.presenta.cc/) based presentation using **markdown**. 
+Create a local [PRESENTA Lib](https://lib.presenta.cc/) based presentation using **markdown**. 
 
 ![](cover.gif)
 
