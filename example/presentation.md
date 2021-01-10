@@ -1,6 +1,6 @@
 ---
-colors: one
-fonts: two
+colors: two
+fonts: four
 transition: fadeIn
 ---
 

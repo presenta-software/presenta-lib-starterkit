@@ -9,9 +9,11 @@
     <script src="libs/presenta-module-highlightjs.min.js"></script>
     <script src="libs/presenta-block-youtube.min.js"></script>
     <script src="libs/presenta-block-chartjs.min.js"></script>
+    <script src="libs/presenta-block-flowchartjs.min.js"></script>
     <script src="libs/presenta-block-fitty.min.js"></script>
     <script src="libs/presenta-block-vegalite.min.js"></script>
     <script src="libs/presenta-block-modelviewer.min.js"></script>
+    <script src="libs/presenta-controller-styles.min.js"></script>
     <script src="libs/presenta-controller-markdown.min.js"></script>
     <script src="libs/presenta-controller-console-notes.min.js"></script>
     <script src="libs/presenta-controller-swiper.min.js"></script>
@@ -44,28 +46,29 @@
             .then(raw => {
                 const config = md2pjson.parse(raw)
                 
-                config.controllers = {
-                    fullscreen: true,
-                    focus: true,
-                    swiper: true,
-                    markdown: true,
-                    preload: true,
-                    pagenum: true,
-                    progressbar: true,
-                    rsync: true,
-                    baseurl: base,
-                    consoleNotes: {
-                        clear: false
-                    }
-                },
-                config.modules = {
-                    highlightjs: 'gradient-dark' // theme of highlight.js
+                if(!config.controllers) config.controllers = {}
+                config.controllers.rsync = true
+                config.controllers.progressbar = true
+                config.controllers.preload = true
+                config.controllers.focus = true
+                config.controllers.fullscreen = true
+                config.controllers.baseurl = base
+                config.controllers.consoleNotes = {
+                    clear: false
                 }
+
+                if(!config.modules) config.modules = {}
+                if(!config.modules.highlightjs){
+                    config.modules.highlightjs = {
+                        highlightjs: 'gradient-dark' // theme of highlight.js
+                    }
+                }
+                console.log(config)
                 new Presenta('#app', config)
             })
             .then(pres => (console.log(pres)))
             .catch(err => {
-                document.body.innerHTML = 'There is an error. Maybe you are not running a local webserver. In this case, open the README.md to learn more.'
+                document.body.innerHTML = 'There is an error. Maybe you are not running a local webserver. In this case, open the README.md to learn more. ' + err
             })
         
     </script>
