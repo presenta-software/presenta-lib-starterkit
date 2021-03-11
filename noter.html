@@ -217,6 +217,7 @@
 
                     // here the trick, clone the main config in order to use it for each scene
                     const configCloned = JSON.parse(JSON.stringify(config))
+                    configCloned.mode = 'preview'
                     configCloned.scenes = [s]
                     configCloned.controllers.rsync = false
                     configCloned.controllers.baseurl = ''
